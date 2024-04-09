@@ -1,2 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using PlanarityTesting;
+
+var test = new Graph(10);
+test.AddEdge(1, 2);
