@@ -1,5 +1,10 @@
 namespace PlanarityTesting;
 
+/// <summary>
+/// Структура даних "Граф".
+/// Операції над даною структурою, в контексті даного проекту,
+/// відбуваються як із неорієнтованим графом
+/// </summary>
 public class Graph
 {
 	/// <summary>
@@ -34,5 +39,29 @@ public class Graph
 	{
 		AdjacencyList[a].Add(b);
 		AdjacencyList[b].Add(a);
+	}
+
+	/// <summary>
+	/// Отримання списку ребер графу
+	/// </summary>
+	public List<Tuple<int, int>> GetEdges()
+	{
+		List<Tuple<int, int>> edges = new List<Tuple<int, int>>();
+
+		for (int i = 0; i < AdjacencyList.Length; i++)
+		{
+			for (int j = 0; j < AdjacencyList[i].Count; j++)
+			{
+				// При ребрі (0, 1) ігнорувати ребро (1, 0)
+				if (edges.Contains(new Tuple<int, int>(AdjacencyList[i][j], i)))
+				{
+					continue;
+				}
+
+				edges.Add(new Tuple<int, int>(i, AdjacencyList[i][j]));
+			}
+		}
+
+		return edges;
 	}
 }
