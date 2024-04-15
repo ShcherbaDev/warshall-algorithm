@@ -21,22 +21,17 @@ public static class GraphGenerator
 		// Ініціалізація графу
 		Graph graph = new Graph(numberOfVertices);
 
-		// Ініціалізація списку з усіх вершин
-		List<int> vertices = Enumerable.Range(
-			0, graph.AdjacencyList.Length
-		).ToList();
-
 		// Ініціалізація рандомайзера
 		Random random = new Random();
 
 		// Створення усіх можливих ребер
 		List<Tuple<int, int>> edgeCombinations = new List<Tuple<int, int>>();
-		for (int i = 0; i < vertices.Count; i++)
+		for (int i = 0; i < graph.Vertices.Count; i++)
 		{
-			for (int j = i + 1; j < vertices.Count; j++)
+			for (int j = i + 1; j < graph.Vertices.Count; j++)
 			{
 				edgeCombinations.Add(
-					new Tuple<int, int>(vertices[i], vertices[j])
+					new Tuple<int, int>(graph.Vertices[i], graph.Vertices[j])
 				);
 			}
 		}
@@ -44,8 +39,9 @@ public static class GraphGenerator
 		// З'єднання вершин випадковим чином
 		foreach (Tuple<int, int> edge in edgeCombinations)
 		{
+			Console.WriteLine(edge.Item1 + " --- " + edge.Item2);
 			if (random.NextDouble() >= density) continue;
-			graph.AddEdge(edge.Item1, edge.Item2);
+			graph.AddEdge(edge);
 		}
 
 		return graph;

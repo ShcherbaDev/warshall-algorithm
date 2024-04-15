@@ -3,65 +3,39 @@ namespace PlanarityTesting;
 /// <summary>
 /// Структура даних "Граф".
 /// Операції над даною структурою, в контексті даного проекту,
-/// відбуваються як із неорієнтованим графом
+/// відбуваються як із неорієнтованим графом.
 /// </summary>
 public class Graph
 {
 	/// <summary>
-	/// Список суміжності, що представляє собою
-	/// масив фіксованої довжини, де кожен елемент - це
-	/// список динамічної довжини,
-	/// що містить номери вершин
+	/// Список із вершинами графу.
+	/// Кожна вершина помічається числом
 	/// </summary>
-	public List<int>[] AdjacencyList { get; private set; }
+	public List<int> Vertices { get; private set; } = new List<int>();
 
 	/// <summary>
-	/// Ініціалізація списку суміжності
+	/// Список із ребрами графу
 	/// </summary>
-	/// <param name="vertices">Кількість вершин</param>
+	public List<Tuple<int, int>> Edges { get; private set; } = new List<Tuple<int, int>>();
+
+	/// <summary>
+	/// Заповнення списку вершин
+	/// </summary>
 	public Graph(int vertices)
 	{
-		AdjacencyList = new List<int>[vertices];
-
-		for (int i = 0; i < vertices; i++)
-		{
-			AdjacencyList[i] = new List<int>();
-		}
+		Vertices.AddRange(Enumerable.Range(0, vertices));
 	}
 
 	/// <summary>
-	/// Додавання вершин до списку суміжності,
-	/// щоб утворити ребро
+	/// Додавання ребра до списку з ребрами
 	/// </summary>
-	/// <param name="a">Номер першої вершини ребра</param>
-	/// <param name="b">Номер другої вершини ребра</param>
-	public void AddEdge(int a, int b)
+	/// <param name="edge">Невпорядкована пара вершин, які з'єднані ребром</param>
+	public void AddEdge(Tuple<int, int> edge)
 	{
-		AdjacencyList[a].Add(b);
-		AdjacencyList[b].Add(a);
+		// ? Що робити із можливими кратними ребрами?
+
+		Edges.Add(edge);
 	}
 
-	/// <summary>
-	/// Отримання списку ребер графу
-	/// </summary>
-	public List<Tuple<int, int>> GetEdges()
-	{
-		List<Tuple<int, int>> edges = new List<Tuple<int, int>>();
-
-		for (int i = 0; i < AdjacencyList.Length; i++)
-		{
-			for (int j = 0; j < AdjacencyList[i].Count; j++)
-			{
-				// При ребрі (0, 1) ігнорувати ребро (1, 0)
-				if (edges.Contains(new Tuple<int, int>(AdjacencyList[i][j], i)))
-				{
-					continue;
-				}
-
-				edges.Add(new Tuple<int, int>(i, AdjacencyList[i][j]));
-			}
-		}
-
-		return edges;
-	}
+	// TODO: зробити відображення через список і матрицю суміжності
 }

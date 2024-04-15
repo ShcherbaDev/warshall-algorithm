@@ -27,4 +27,4 @@ Graph randomGraph = GraphGenerator.GenerateWithErdosRenyiModel(
 	density
 );
 
-Console.WriteLine($"Кількість згенерованих ребер: {randomGraph.GetEdges().Count}");
+Console.WriteLine($"Кількість згенерованих ребер: {randomGraph.Edges.Count}");
