@@ -39,7 +39,6 @@ public static class GraphGenerator
 		// З'єднання вершин випадковим чином
 		foreach (Tuple<int, int> edge in edgeCombinations)
 		{
-			Console.WriteLine(edge.Item1 + " --- " + edge.Item2);
 			if (random.NextDouble() >= density) continue;
 			graph.AddEdge(edge);
 		}
