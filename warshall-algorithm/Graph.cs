@@ -37,5 +37,41 @@ public class Graph
 		Edges.Add(edge);
 	}
 
-	// TODO: зробити відображення через список і матрицю суміжності
+	/// <summary>
+	/// Повертання матриці суміжності даного графу
+	/// Повертає двовимірний масив із 0 та 1, де
+	/// перший вимір - рядки, другий - колонки 
+	/// </summary>
+	public int[,] GetAdjacencyMatrix()
+	{
+		int[,] matrix = new int[Vertices.Count, Vertices.Count];
+
+		for (int i = 0; i < Vertices.Count; i++)
+		{
+			for (int j = 0; j < Vertices.Count; j++)
+			{
+				matrix[i, j] = Edges.Any(v => (v.Item1 == i && v.Item2 == j) || (v.Item1 == j && v.Item2 == i)) ? 1 : 0;
+			}
+		}
+
+		return matrix;
+	}
+
+	/// <summary>
+	/// Утворює матрицю суміжності та гарно виводить її в консолі
+	/// </summary>
+	public void GetAndPrintAdjacencyMatrix()
+	{
+		int[,] adjacencyMatrix = GetAdjacencyMatrix();
+		Console.WriteLine($"      {string.Join("\t", Vertices)}");
+		for (int i = 0; i < adjacencyMatrix.GetLength(0); i++)
+		{
+			Console.Write($"{Vertices[i]} | ");
+			for (int j = 0; j < adjacencyMatrix.GetLength(1); j++)
+			{
+				Console.Write(adjacencyMatrix[i, j] + "\t");
+			}
+			Console.Write("\n");
+		}
+	}
 }
