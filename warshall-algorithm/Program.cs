@@ -28,3 +28,11 @@ Graph randomGraph = GraphGenerator.GenerateWithErdosRenyiModel(
 );
 
 Console.WriteLine($"Кількість згенерованих ребер: {randomGraph.Edges.Count}");
+
+List<int[,]> reachability = Warshall.GetReachability(randomGraph.GetAdjacencyMatrix());
+Console.WriteLine($"Матриця досяжності від W0 до W{reachability.Count}");
+foreach (var item in reachability)
+{
+	item.PrintTwoDimensionalArray();
+	Console.WriteLine();
+};

@@ -56,22 +56,4 @@ public class Graph
 
 		return matrix;
 	}
-
-	/// <summary>
-	/// Утворює матрицю суміжності та гарно виводить її в консолі
-	/// </summary>
-	public void GetAndPrintAdjacencyMatrix()
-	{
-		int[,] adjacencyMatrix = GetAdjacencyMatrix();
-		Console.WriteLine($"      {string.Join("\t", Vertices)}");
-		for (int i = 0; i < adjacencyMatrix.GetLength(0); i++)
-		{
-			Console.Write($"{Vertices[i]} | ");
-			for (int j = 0; j < adjacencyMatrix.GetLength(1); j++)
-			{
-				Console.Write(adjacencyMatrix[i, j] + "\t");
-			}
-			Console.Write("\n");
-		}
-	}
 }
