@@ -1,4 +1,4 @@
-namespace PlanarityTesting;
+namespace WarshallAlgorithm;
 
 /// <summary>
 /// Структура даних "Граф".

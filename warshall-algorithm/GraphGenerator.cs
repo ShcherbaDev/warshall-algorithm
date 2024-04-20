@@ -1,4 +1,4 @@
-namespace PlanarityTesting;
+namespace WarshallAlgorithm;
 
 public static class GraphGenerator
 {
