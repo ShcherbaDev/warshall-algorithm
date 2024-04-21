@@ -24,7 +24,7 @@ public static class GraphGenerator
 		// Ініціалізація рандомайзера
 		Random random = new Random();
 
-		// Створення усіх можливих ребер
+		// Створення усіх можливих ребер виключаючи петлі та кратні ребра
 		List<Tuple<int, int>> edgeCombinations = new List<Tuple<int, int>>();
 		for (int i = 0; i < graph.Vertices.Count; i++)
 		{

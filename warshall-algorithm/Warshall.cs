@@ -6,7 +6,7 @@ public static class Warshall
 	/// Повернення списку із матриць, що означають перехід
 	/// від матриці суміжності до матриці досяжності
 	/// </summary>
-	public static List<int[,]> GetReachability(int[,] adjacencyMatrix)
+	public static List<int[,]> GetReachabilityTransitionList(int[,] adjacencyMatrix)
 	{
 		List<int[,]> result = [adjacencyMatrix];
 		int adjacencyMatrixSize = adjacencyMatrix.GetLength(0);

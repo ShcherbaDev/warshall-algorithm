@@ -3,7 +3,8 @@ namespace WarshallAlgorithm;
 /// <summary>
 /// Структура даних "Граф".
 /// Операції над даною структурою, в контексті даного проекту,
-/// відбуваються як із неорієнтованим графом.
+/// відбуваються як із неорієнтованим незваженим графом,
+/// без петель та кратних ребер
 /// </summary>
 public class Graph
 {
@@ -32,8 +33,11 @@ public class Graph
 	/// <param name="edge">Невпорядкована пара вершин, які з'єднані ребром</param>
 	public void AddEdge(Tuple<int, int> edge)
 	{
-		// ? Що робити із можливими кратними ребрами?
-
+		// Ігноруємо додавання кратних ребер та петель
+		if (Edges.Any(x => (x.Item1 == edge.Item1 && x.Item2 == edge.Item2) || (x.Item1 == edge.Item2 && edge.Item2 == edge.Item1)))
+		{
+			return;
+		}
 		Edges.Add(edge);
 	}
 
