@@ -2,7 +2,6 @@
 using WarshallAlgorithm;
 
 List<Tuple<int, float>> inputs = new List<Tuple<int, float>> {
-	
 	new (20, 0.2f),
 	new (40, 0.2f),
 	new (60, 0.2f),
@@ -13,7 +12,7 @@ List<Tuple<int, float>> inputs = new List<Tuple<int, float>> {
 	new (160, 0.2f),
 	new (180, 0.2f),
 	new (200, 0.2f),
-	
+
 	new (20, 0.4f),
 	new (40, 0.4f),
 	new (60, 0.4f),
@@ -24,7 +23,7 @@ List<Tuple<int, float>> inputs = new List<Tuple<int, float>> {
 	new (160, 0.4f),
 	new (180, 0.4f),
 	new (200, 0.4f),
-	
+
 	new (20, 0.6f),
 	new (40, 0.6f),
 	new (60, 0.6f),
@@ -35,7 +34,7 @@ List<Tuple<int, float>> inputs = new List<Tuple<int, float>> {
 	new (160, 0.6f),
 	new (180, 0.6f),
 	new (200, 0.6f),
-	
+
 	new (20, 0.8f),
 	new (40, 0.8f),
 	new (60, 0.8f),
@@ -46,7 +45,7 @@ List<Tuple<int, float>> inputs = new List<Tuple<int, float>> {
 	new (160, 0.8f),
 	new (180, 0.8f),
 	new (200, 0.8f),
-	
+
 	new (20, 1.0f),
 	new (40, 1.0f),
 	new (60, 1.0f),
@@ -65,35 +64,37 @@ for (int i = 0; i < inputs.Count; i++)
 	int numberOfVertices = Math.Clamp(algorithmInput.Item1, 1, int.MaxValue);
 	float density = Math.Clamp(algorithmInput.Item2, 0, 1);
 
+	List<double> experimentsExecutionTime = new List<double>();
+
+	// 20 разів виконати експеримент на парі вершин та щільності
+	// щоб позбутися шумових факторів
+	for (int j = 0; j < 20; j++)
+	{
+		// Створення графу та його матриці суміжності
+		Graph randomGraph = GraphGenerator.GenerateWithErdosRenyiModel(
+			numberOfVertices,
+			density
+		);
+
+		int[,] adjacencyMatrix = randomGraph.GetAdjacencyMatrix();
+
+		// Виконання алгоритму та замір часу
+		var timer = new Stopwatch();
+		timer.Start();
+
+		List<int[,]> reachabilityTransitionList = Warshall.GetReachabilityTransitionList(adjacencyMatrix);
+
+		timer.Stop();
+		experimentsExecutionTime.Add(timer.Elapsed.TotalMilliseconds);
+
+		// Закоментовано щоб швидше отримати результати експерименту
+		// Console.WriteLine($"W0 =\n{reachabilityTransitionList[0].TwoDimensionalArrayToString()}\n");
+		// Console.WriteLine($"W{reachabilityTransitionList.Count} =\n{reachabilityTransitionList[0].TwoDimensionalArrayToString()}");
+	}
+
 	Console.WriteLine($"--------------------------");
 	Console.WriteLine($"Експеримент номер {i + 1}");
 
 	Console.WriteLine($"Кількість вершин: {numberOfVertices}\nЩільність: {density} ({Math.Round(density * 100, 2)}%)");
-
-	// Створення графу та його матриці суміжності
-	Graph randomGraph = GraphGenerator.GenerateWithErdosRenyiModel(
-		numberOfVertices,
-		density
-	);
-
-	Console.WriteLine($"Кількість згенерованих ребер: {randomGraph.Edges.Count}");
-
-	int[,] adjacencyMatrix = randomGraph.GetAdjacencyMatrix();
-
-	// Виконання алгоритму та замір часу
-	var timer = new Stopwatch();
-	timer.Start();
-
-	List<int[,]> reachabilityTransitionList = Warshall.GetReachabilityTransitionList(adjacencyMatrix);
-
-	timer.Stop();
-	Console.WriteLine($"Час виконання алгоритму: {timer.Elapsed.TotalMilliseconds} мс.");
-
-	Console.WriteLine($"Матриці досяжності: від W0 до W{reachabilityTransitionList.Count}");
-
-	// foreach (int[,] matrix in reachabilityTransitionList)
-	// {
-	// 	matrix.PrintTwoDimensionalArray();
-	// 	Console.WriteLine();
-	// };
+	Console.WriteLine($"(Середній) час виконання алгоритму: {Math.Round(experimentsExecutionTime.Average(), 5)} мс.");
 }

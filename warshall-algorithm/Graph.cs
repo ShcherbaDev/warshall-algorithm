@@ -33,10 +33,10 @@ public class Graph
 	/// <param name="edge">Невпорядкована пара вершин, які з'єднані ребром</param>
 	public void AddEdge(Tuple<int, int> edge)
 	{
-		// Ігноруємо додавання кратних ребер та петель
+		// Повернення помилки, якщо здійснена спроба додати петлю або кратне ребро
 		if (Edges.Any(x => (x.Item1 == edge.Item1 && x.Item2 == edge.Item2) || (x.Item1 == edge.Item2 && edge.Item2 == edge.Item1)))
 		{
-			return;
+			throw new ArgumentException("В межах даного проєкту, граф не може бути із кратними ребрами або петлями");
 		}
 		Edges.Add(edge);
 	}
