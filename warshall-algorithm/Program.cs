@@ -2,7 +2,6 @@
 using WarshallAlgorithm;
 
 List<Tuple<int, float>> inputs = new List<Tuple<int, float>> {
-	
 	new (20, 0.2f),
 	new (40, 0.2f),
 	new (60, 0.2f),
@@ -13,7 +12,7 @@ List<Tuple<int, float>> inputs = new List<Tuple<int, float>> {
 	new (160, 0.2f),
 	new (180, 0.2f),
 	new (200, 0.2f),
-	
+
 	new (20, 0.4f),
 	new (40, 0.4f),
 	new (60, 0.4f),
@@ -24,7 +23,7 @@ List<Tuple<int, float>> inputs = new List<Tuple<int, float>> {
 	new (160, 0.4f),
 	new (180, 0.4f),
 	new (200, 0.4f),
-	
+
 	new (20, 0.6f),
 	new (40, 0.6f),
 	new (60, 0.6f),
@@ -35,7 +34,7 @@ List<Tuple<int, float>> inputs = new List<Tuple<int, float>> {
 	new (160, 0.6f),
 	new (180, 0.6f),
 	new (200, 0.6f),
-	
+
 	new (20, 0.8f),
 	new (40, 0.8f),
 	new (60, 0.8f),
@@ -46,7 +45,7 @@ List<Tuple<int, float>> inputs = new List<Tuple<int, float>> {
 	new (160, 0.8f),
 	new (180, 0.8f),
 	new (200, 0.8f),
-	
+
 	new (20, 1.0f),
 	new (40, 1.0f),
 	new (60, 1.0f),
@@ -91,9 +90,7 @@ for (int i = 0; i < inputs.Count; i++)
 
 	Console.WriteLine($"Матриці досяжності: від W0 до W{reachabilityTransitionList.Count}");
 
-	// foreach (int[,] matrix in reachabilityTransitionList)
-	// {
-	// 	matrix.PrintTwoDimensionalArray();
-	// 	Console.WriteLine();
-	// };
+	// Закоментовано щоб швидше отримати результати експерименту
+	// Console.WriteLine($"W0 =\n{reachabilityTransitionList[0].TwoDimensionalArrayToString()}\n");
+	// Console.WriteLine($"W{reachabilityTransitionList.Count} =\n{reachabilityTransitionList[0].TwoDimensionalArrayToString()}");
 }
