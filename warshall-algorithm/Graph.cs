@@ -61,6 +61,11 @@ public class Graph
 		return matrix;
 	}
 
+	/// <summary>
+	/// Повертання списків суміжності даного графу
+	/// Повертає словник, де назва вершини - ключі,
+	/// а список суміжних вершин - значення
+	/// </summary>
 	public Dictionary<int, List<int>> GetAdjacencyLists()
 	{
 		Dictionary<int, List<int>> lists = new Dictionary<int, List<int>>();
