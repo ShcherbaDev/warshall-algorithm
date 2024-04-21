@@ -1,11 +1,36 @@
 ﻿using System.Diagnostics;
 using WarshallAlgorithm;
 
-List<Tuple<int, float>> inputs = new List<Tuple<int, float>>() {
-	new Tuple<int, float>(5, 0.4f),
-	new Tuple<int, float>(59, 0.6f),
-	new Tuple<int, float>(20, 0.2f),
-	new Tuple<int, float>(20, 0.33f),
+List<Tuple<int, float>> inputs = new List<Tuple<int, float>> {
+	new (40, 0.2f),
+	new (40, 0.4f),
+	new (40, 0.6f),
+	new (40, 0.8f),
+	new (40, 1.0f),
+	
+	new (80, 0.2f),
+	new (80, 0.4f),
+	new (80, 0.6f),
+	new (80, 0.8f),
+	new (80, 1.0f),
+	
+	new (120, 0.2f),
+	new (120, 0.4f),
+	new (120, 0.6f),
+	new (120, 0.8f),
+	new (120, 1.0f),
+	
+	new (160, 0.2f),
+	new (160, 0.4f),
+	new (160, 0.6f),
+	new (160, 0.8f),
+	new (160, 1.0f),
+	
+	new (200, 0.2f),
+	new (200, 0.4f),
+	new (200, 0.6f),
+	new (200, 0.8f),
+	new (200, 1.0f)
 };
 
 for (int i = 0; i < inputs.Count; i++)
