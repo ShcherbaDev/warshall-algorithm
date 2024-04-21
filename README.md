@@ -10,7 +10,7 @@
 
 Компіляція: `dotnet build`
 
-Запуск: `dotnet run`
+Запуск: `dotnet run --project warshall-algorithm`
 
 ### Встановлення аргументів
 
