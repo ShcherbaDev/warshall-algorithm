@@ -60,4 +60,30 @@ public class Graph
 
 		return matrix;
 	}
+
+	public Dictionary<int, List<int>> GetAdjacencyLists()
+	{
+		Dictionary<int, List<int>> lists = new Dictionary<int, List<int>>();
+
+		for (int i = 0; i < Vertices.Count; i++)
+		{
+			List<int> list = new List<int>();
+			
+			foreach (var edge in Edges)
+			{
+				if (edge.Item1 == i && !list.Contains(edge.Item1))
+				{
+					list.Add(edge.Item2);
+				}
+				else if (edge.Item2 == i && !list.Contains(edge.Item2))
+				{
+					list.Add(edge.Item1);
+				}
+			}
+			
+			lists.Add(i, list); 
+		}
+
+		return lists;
+	}
 }
